@@ -12,4 +12,8 @@ export class UsuarioService {
   async List(): Promise<Usuario[]> {
     return this.usuarioRepository.find();
   }
+
+  async findOne(username: string): Promise<Usuario[]> {
+    return this.usuarioRepository.find({ where: { email: username } });
+  }
 }
