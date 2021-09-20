@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Index, Repository } from 'typeorm';
 import { Usuario } from './usuario.entity';
 import * as bcrypt from 'bcrypt';
 @Injectable()
@@ -11,6 +11,27 @@ export class UsuarioService {
 
   async List(): Promise<Usuario[]> {
     return this.usuarioRepository.find();
+  }
+
+  async save(email: string, password: string, name: string) {
+    try {
+      const created = await this.usuarioRepository.insert({
+        email: email,
+        password: await this.hashPassword(password),
+        name: name,
+      });
+      if (
+        created.identifiers[0].id != 0 ||
+        created.identifiers[0].id != undefined
+      ) {
+        return {
+          message: 'salvo com sucesso',
+          statusCode: 204,
+        };
+      }
+    } catch (error) {
+      return { mensagem: error.message, statusCode: error.code };
+    }
   }
 
   async auth(username: string, pass: string): Promise<Usuario> {

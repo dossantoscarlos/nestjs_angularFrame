@@ -1,0 +1,12 @@
+{
+	"username" : "anjoazrael10@gmail.com",
+	"password" : "teste"
+}
+
+curl -X POST http://localhost:3000/auth/login -d '{"username": "anjoazrael10@gmail.com", "password": "teste"}' -H "Content-Type: application/json"
+
+curl http://localhost:3000/profile -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzIwNjI0NDEsImV4cCI6MTYzMjA2MjU2MX0.l1aWI1p3VN3Cqh62bs"
+
+{
+    "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzIwNjIwNjksImV4cCI6MTYzMjA2MjEyOX0.eC-uRNY3P9_QHyYFczQWuzvq68uhGX8MJhwx-ZBLrpM"
+}
